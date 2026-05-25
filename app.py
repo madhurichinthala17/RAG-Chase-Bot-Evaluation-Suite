@@ -1,6 +1,6 @@
 import streamlit as st
 import random
-from Helpers.sessionhistory import clear_session_history
+from app.memory.session_history import clear_session_history
 
 st.title("Hey, Welcome to Chase-bot")
 
@@ -23,7 +23,7 @@ for msg in st.session_state.chat_history:
 # instead of a blank page.
 @st.cache_resource(show_spinner="Loading model and vector store...")
 def load_chain():
-    from utils.chat_service import get_response
+    from app.llms.generation_service import get_response
     return get_response
 
 try:

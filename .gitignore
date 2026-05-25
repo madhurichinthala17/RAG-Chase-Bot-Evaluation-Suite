@@ -12,3 +12,6 @@ dist/
 *.egg-info/
 .python-version
 vectorstore/
+.vector_db/
+data/vectorstores/
+data/embeddings/
