@@ -1,8 +1,10 @@
 from deepeval.dataset import EvaluationDataset
 from deepeval.test_case import LLMTestCase
+from evaluation.datasets.deepeval_login import run_login
 from evaluation.pipelines._eval_service import get_response_with_context
 from app.memory.session_history import clear_session_history
 
+run_login()
 dataset = EvaluationDataset()
 dataset.pull(alias="Manual Golden Dataset")
 

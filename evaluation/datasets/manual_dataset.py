@@ -3,6 +3,7 @@ from deepeval.dataset import EvaluationDataset,Golden
 import json
 from pathlib import Path
 
+run_login()
 project_root = Path(__file__).parent.parent.parent
 dataset_path = project_root / "data" / "evaluation" / "manual_goldens.json"
 
