@@ -10,7 +10,7 @@ CHROMA_DIR = str(
     Path(__file__).resolve().parent.parent.parent / "data" / "vectorstores" / "chroma_langchain_db"
 )
 
-@observe(name="creating_vectorstore")
+@observe(type="tool", name="creating_vectorstore")
 def get_vectorstore() -> Chroma:
     os.makedirs(CHROMA_DIR, exist_ok=True)
 

@@ -4,7 +4,7 @@ from app.memory.session_history import clear_session_history
 from deepeval.tracing import observe, update_llm_span
 
 retriever = build_retriever()
-
+@observe(type="tool",name ="Serialized Retrieved docs")
 def serialize_docs(docs):
     return [
         {
@@ -26,9 +26,4 @@ def get_response_with_context(query: str, session_id: str):
         {"query": query, "retriever_context": retrieved_chunks},
         config={"configurable": {"session_id": session_id}}
     )
-    update_llm_span(
-        input_token_count=answer.usage.prompt_tokens,
-        output_token_count=answer.usage.completion_tokens
-    )
-
     return answer, retrieved_chunks
