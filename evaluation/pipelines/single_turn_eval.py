@@ -9,7 +9,7 @@ from deepeval.metrics import (
 
 from evaluation.pipelines.generate_testcases import get_testcases
 
-IDENTIFIER = "v3"
+IDENTIFIER = "v4" 
 
 METRICS = [
     AnswerRelevancyMetric(),
