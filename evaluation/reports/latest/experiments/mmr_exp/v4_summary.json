@@ -1,0 +1,11 @@
+{
+  "experiment": "v4",
+  "num_testcases": 15,
+  "metrics": {
+    "answer_relevancy": 0.95,
+    "faithfulness": 0.96,
+    "contextual_precision": 0.73,
+    "contextual_recall": 0.50,
+    "contextual_relevancy": 0.49
+  }
+}
