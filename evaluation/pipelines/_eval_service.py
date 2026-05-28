@@ -1,6 +1,7 @@
 from app.chains.rag_chain import chain_with_message_history
 from app.retrievers.retriever_factory import build_retriever
 from app.memory.session_history import clear_session_history
+from deepeval.tracing import observe, update_llm_span
 
 retriever = build_retriever()
 
@@ -13,6 +14,7 @@ def serialize_docs(docs):
         for d in docs
     ]
 
+@observe(type="llm",model="Ollama Model")
 def get_response_with_context(query: str, session_id: str):
     """Returns (answer, retrieved_chunks) using the same chain as get_response,
     but with a single retrieval call so both are guaranteed to match."""
@@ -23,6 +25,10 @@ def get_response_with_context(query: str, session_id: str):
     answer = chain_with_message_history.invoke(
         {"query": query, "retriever_context": retrieved_chunks},
         config={"configurable": {"session_id": session_id}}
+    )
+    update_llm_span(
+        input_token_count=answer.usage.prompt_tokens,
+        output_token_count=answer.usage.completion_tokens
     )
 
     return answer, retrieved_chunks

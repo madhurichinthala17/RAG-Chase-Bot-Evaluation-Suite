@@ -1,4 +1,5 @@
 from deepeval import evaluate
+from deepeval.tracing import observe
 from deepeval.metrics import (
     AnswerRelevancyMetric,
     ContextualPrecisionMetric,
@@ -18,7 +19,6 @@ METRICS = [
     ContextualRecallMetric(),
     ContextualRelevancyMetric(),
 ]
-
 
 def run(identifier: str = IDENTIFIER):
     testcases = get_testcases()

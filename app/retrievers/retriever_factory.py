@@ -1,5 +1,7 @@
 from app.retrievers.vectorstore import get_vectorstore
+from deepeval.tracing import observe
 
+@observe(type="retriever", model="Chroma with Ollama Embeddings")
 def build_retriever(k: int = 6):
     store = get_vectorstore()
     return store.as_retriever(

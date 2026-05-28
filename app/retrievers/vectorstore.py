@@ -4,12 +4,13 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
 from app.ingestion.pdf_loader import load_filtered_docs
 from app.ingestion.chunker import build_chunks
+from deepeval.tracing import observe
 
 CHROMA_DIR = str(
     Path(__file__).resolve().parent.parent.parent / "data" / "vectorstores" / "chroma_langchain_db"
 )
 
-
+@observe(name="creating_vectorstore")
 def get_vectorstore() -> Chroma:
     os.makedirs(CHROMA_DIR, exist_ok=True)
 
