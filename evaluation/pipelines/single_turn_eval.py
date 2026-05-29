@@ -1,4 +1,5 @@
 from deepeval import evaluate
+from app.retrievers.retriever_factory import build_retriever
 from deepeval.tracing import observe
 from deepeval.metrics import (
     AnswerRelevancyMetric,
@@ -10,7 +11,6 @@ from deepeval.metrics import (
 
 from evaluation.pipelines.generate_testcases import get_testcases
 
-IDENTIFIER = "v4" 
 
 METRICS = [
     AnswerRelevancyMetric(),
@@ -20,8 +20,9 @@ METRICS = [
     ContextualRelevancyMetric(),
 ]
 
-def run(identifier: str = IDENTIFIER):
-    testcases = get_testcases()
+def run(identifier,retriever_type,k,chunk_size,chunk_overlap):
+    retriever = build_retriever(retriever_type=retriever_type, k=k, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    testcases = get_testcases(retriever)
     for metric in METRICS:
         evaluate(test_cases=testcases, metrics=[metric], identifier=identifier)
 

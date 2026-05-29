@@ -11,7 +11,7 @@ CHROMA_DIR = str(
 )
 
 @observe(type="tool", name="creating_vectorstore")
-def get_vectorstore() -> Chroma:
+def get_vectorstore(chunk_size:int=800, chunk_overlap:int=600) -> Chroma:
     os.makedirs(CHROMA_DIR, exist_ok=True)
 
     embeddings = OllamaEmbeddings(model="nomic-embed-text")
@@ -26,7 +26,7 @@ def get_vectorstore() -> Chroma:
         print(f"[embedding] Vector store empty — building chunks and embedding now...")
         print(f"[embedding] Persisting to: {CHROMA_DIR}")
         filtered_docs = load_filtered_docs()
-        chunks = build_chunks(filtered_docs)
+        chunks = build_chunks(filtered_docs,chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         store.add_documents(chunks)
         print(f"[embedding] Done. {store._collection.count()} chunks stored.")
     else:

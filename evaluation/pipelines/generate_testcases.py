@@ -11,11 +11,11 @@ dataset.pull(alias="Manual Golden Dataset")
 test_cases = []
 i = 0
 
-def store_testcases():
+def store_testcases(retriever):
     global i
     for golden in dataset.goldens:
         session_id = "abc"
-        actual_answer, retrieved_chunks = get_response_with_context(golden.input, session_id)
+        actual_answer, retrieved_chunks = get_response_with_context(golden.input, session_id, retriever)
         clear_session_history(session_id)
         testcase = LLMTestCase(
             input=golden.input,
@@ -28,7 +28,7 @@ def store_testcases():
         i += 1
     return test_cases
 
-def get_testcases():
+def get_testcases(retriever):
     if len(test_cases) == 0:
-        return store_testcases()
+        return store_testcases(retriever)
     return test_cases

@@ -3,6 +3,7 @@
 Experiment:
 Evaluated MMR (Max Marginal Relevance) retrieval to improve retrieval diversity and reduce duplicate chunks.
 ![alt text](image.png)
+![alt text](image-1.png)
 Results:
 - Faithfulness improved slightly
 - Contextual recall decreased

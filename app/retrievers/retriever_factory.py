@@ -2,9 +2,9 @@ from app.retrievers.vectorstore import get_vectorstore
 from deepeval.tracing import observe
 
 @observe(type="retriever", model="Chroma with Ollama Embeddings", embedder="nomic-embed-text",name="Building Retriever")
-def build_retriever(retriever_type="similarity",k=6):
-    store = get_vectorstore()
-    if retriever_type == "mmmr":
+def build_retriever(retriever_type="similarity",k=6,chunk_size=1000,chunk_overlap=500):
+    store = get_vectorstore(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    if retriever_type == "mmr":
         return store.as_retriever(
             search_type="mmr",
             search_kwargs={
