@@ -1,0 +1,9 @@
+experiment_name : final_single_turn_evaluation
+
+retriever:
+  type:similarity
+  k : 6
+
+chunking:
+  chunk_size: 800
+  chunk_overlap:600

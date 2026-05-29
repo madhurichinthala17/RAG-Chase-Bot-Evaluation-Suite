@@ -4,6 +4,7 @@ from app.memory.session_history import clear_session_history
 from deepeval.tracing import observe, update_llm_span
 
 retriever = build_retriever()
+
 @observe(type="tool",name ="Serialized Retrieved docs")
 def serialize_docs(docs):
     return [
@@ -14,7 +15,7 @@ def serialize_docs(docs):
         for d in docs
     ]
 
-@observe(type="llm",model="Ollama Model")
+@observe(type="llm",model="Ollama Model",name="Getting Response with Context")
 def get_response_with_context(query: str, session_id: str):
     """Returns (answer, retrieved_chunks) using the same chain as get_response,
     but with a single retrieval call so both are guaranteed to match."""
