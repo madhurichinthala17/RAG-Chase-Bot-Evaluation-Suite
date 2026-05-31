@@ -1,0 +1,11 @@
+{
+  "experiment": "final_single_turn_evaluation",
+  "num_testcases": 15,
+  "metrics": {
+    "answer_relevancy": 0.94,
+    "faithfulness": 0.89,
+    "contextual_precision": 0.60,
+    "contextual_recall": 0.50,
+    "contextual_relevancy": 0.55
+  }
+}

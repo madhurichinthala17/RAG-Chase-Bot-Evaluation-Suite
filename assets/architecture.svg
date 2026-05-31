@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440">
+  <style>
+    .box { fill:#ffffff; stroke:#2f4f4f; stroke-width:2px; rx:14px; ry:14px; }
+    .text { font: 16px 'Segoe UI', sans-serif; fill:#1f3333; }
+    .title { font: 18px 'Segoe UI Bold', sans-serif; fill:#142d35; }
+    .arrow { fill:none; stroke:#2f4f4f; stroke-width:2px; marker-end:url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8" fill="#2f4f4f" />
+    </marker>
+  </defs>
+  <rect x="20" y="20" width="260" height="80" class="box" />
+  <text x="150" y="48" text-anchor="middle" class="title">Input Document</text>
+  <text x="150" y="72" text-anchor="middle" class="text">JP Morgan 10-K PDF</text>
+
+  <rect x="320" y="20" width="260" height="80" class="box" />
+  <text x="450" y="48" text-anchor="middle" class="title">Ingestion</text>
+  <text x="450" y="72" text-anchor="middle" class="text">PDF loader + chunker</text>
+
+  <rect x="620" y="20" width="260" height="80" class="box" />
+  <text x="750" y="48" text-anchor="middle" class="title">Vector Store</text>
+  <text x="750" y="72" text-anchor="middle" class="text">Chroma with Ollama embeddings</text>
+
+  <line x1="280" y1="60" x2="320" y2="60" class="arrow"/>
+  <line x1="580" y1="60" x2="620" y2="60" class="arrow"/>
+
+  <rect x="20" y="150" width="260" height="100" class="box" />
+  <text x="150" y="180" text-anchor="middle" class="title">Retrieval</text>
+  <text x="150" y="205" text-anchor="middle" class="text">Similarity / MMR retriever</text>
+  <text x="150" y="225" text-anchor="middle" class="text">Top-K context selection</text>
+
+  <rect x="320" y="150" width="260" height="100" class="box" />
+  <text x="450" y="180" text-anchor="middle" class="title">RAG Chain</text>
+  <text x="450" y="205" text-anchor="middle" class="text">Prompt assembly + context formatting</text>
+  <text x="450" y="225" text-anchor="middle" class="text">DeepEval tracing hooks</text>
+
+  <rect x="620" y="150" width="260" height="100" class="box" />
+  <text x="750" y="180" text-anchor="middle" class="title">LLM</text>
+  <text x="750" y="205" text-anchor="middle" class="text">Ollama chat: qwen2.5:latest</text>
+  <text x="750" y="225" text-anchor="middle" class="text">Answer generation</text>
+
+  <line x1="280" y1="200" x2="320" y2="200" class="arrow"/>
+  <line x1="580" y1="200" x2="620" y2="200" class="arrow"/>
+
+  <rect x="300" y="290" width="340" height="100" class="box" />
+  <text x="470" y="330" text-anchor="middle" class="title">Evaluation</text>
+  <text x="470" y="355" text-anchor="middle" class="text">DeepEval metrics, reports, failure analysis</text>
+
+  <line x1="450" y1="250" x2="450" y2="290" class="arrow"/>
+</svg>
