@@ -80,11 +80,7 @@ python -c "from evaluation.datasets.deepeval_login import run_login; run_login()
 
 ## Run the evaluation
 
-### 1. Prepare the vector store
-
-The retriever builds a Chroma index from `data/raw_docs/JPmorgan10kReport.pdf` automatically if no persisted store exists.
-
-### 2. Run the final evaluation
+### How to Run the final evaluation?
 
 ```bash
 python evaluation/pipelines/runner.py
@@ -92,7 +88,7 @@ python evaluation/pipelines/runner.py
 
 This executes the final experiment defined in `evaluation/configs/final.yaml` and writes metrics to the `deepeval` workflow.
 
-### 3. Run human-style evaluation
+### How to Run human-style evaluation?
 
 ```bash
 python evaluation/human_eval/run_single_eval.py
@@ -100,13 +96,6 @@ python evaluation/human_eval/run_single_eval.py
 
 This evaluates manually curated queries from `data/evaluation/manual_goldens.json`, capturing retrieved chunks and generated answers.
 
-### 4. Generate DeepEval testcases
-
-```bash
-python evaluation/pipelines/generate_testcases.py
-```
-
-This creates evaluation testcases from the current retriever and dataset configuration.
 
 ## Evaluation highlights
 
