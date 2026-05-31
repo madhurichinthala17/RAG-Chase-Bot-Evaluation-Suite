@@ -4,7 +4,7 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
 from app.ingestion.pdf_loader import load_filtered_docs
 from app.ingestion.chunker import build_chunks
-from deepeval.tracing import observe
+from deepeval.tracing import observe,update_current_span
 
 CHROMA_DIR = str(
     Path(__file__).resolve().parent.parent.parent / "data" / "vectorstores" / "chroma_langchain_db"
@@ -32,4 +32,5 @@ def get_vectorstore(chunk_size:int=800, chunk_overlap:int=600) -> Chroma:
     else:
         print(f"[embedding] Loaded existing store ({store._collection.count()} chunks) from {CHROMA_DIR}")
 
+    update_current_span(name="Returning Retriever from Vector Store")
     return store

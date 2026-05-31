@@ -20,7 +20,7 @@ def store_testcases(retriever):
         testcase = LLMTestCase(
             input=golden.input,
             actual_output=actual_answer,
-            retrieval_context = ["".join(chunk['content'] + "\n" for chunk in retrieved_chunks)],  
+            retrieval_context = [chunk['content'] for chunk in retrieved_chunks],  
             expected_output=golden.expected_output
         )
         test_cases.append(testcase)

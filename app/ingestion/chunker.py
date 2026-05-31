@@ -1,9 +1,7 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 from app.ingestion.splitter import split_by_sections
-from deepeval.tracing import observe
 
-@observe(type="tool",name="Chunking Documents")
 def build_chunks(filtered_docs,chunk_size,chunk_overlap) -> list:
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     full_text = "\n".join(doc.page_content for doc in filtered_docs)

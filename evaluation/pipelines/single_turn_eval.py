@@ -23,8 +23,7 @@ METRICS = [
 def run(identifier,retriever_type,k,chunk_size,chunk_overlap):
     retriever = build_retriever(retriever_type=retriever_type, k=k, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     testcases = get_testcases(retriever)
-    for metric in METRICS:
-        evaluate(test_cases=testcases, metrics=[metric], identifier=identifier)
+    evaluate(test_cases=testcases, metrics= METRICS, identifier=identifier)
 
 
 if __name__ == "__main__":

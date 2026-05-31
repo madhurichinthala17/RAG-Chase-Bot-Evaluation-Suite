@@ -1,8 +1,7 @@
 from app.chains.rag_chain import build_chain
 from app.memory.session_history import clear_session_history
-from deepeval.tracing import observe, update_llm_span
+from deepeval.tracing import observe, update_current_trace
 
-@observe(type="tool",name ="Serialized Retrieved docs")
 def serialize_docs(docs):
     return [
         {
@@ -24,5 +23,12 @@ def get_response_with_context(query: str, session_id: str, retriever):
     answer = chain_with_message_history.invoke(
         {"query": query, "retriever_context": retrieved_chunks},
         config={"configurable": {"session_id": session_id}}
+    )
+
+    update_current_trace(
+        name = query[:50],  # Use the first 50 chars of the query as the trace name
+        input=query,
+        output=answer,
+        retrieval_context=[chunk['content'] for chunk in retrieved_chunks]
     )
     return answer, retrieved_chunks
