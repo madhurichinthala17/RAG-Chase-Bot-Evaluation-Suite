@@ -1,4 +1,4 @@
-# Chase-bot Evaluation Suite
+# RAG Chase-bot Evaluation Suite
 
 > Confident AI / DeepEval evaluation for a finance RAG pipeline built around the JPMorgan 10-K.
 
