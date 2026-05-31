@@ -96,6 +96,14 @@ python evaluation/human_eval/run_single_eval.py
 
 This evaluates manually curated queries from `data/evaluation/manual_goldens.json`, capturing retrieved chunks and generated answers.
 
+### WHAT GOES BEHIND THE SCENES
+
+- **Runner:** `evaluation/pipelines/runner.py` — the final single-turn evaluation driver used to run experiments.
+- **Config:** `evaluation/configs/final.yaml` sets retrieval and experiment parameters (similarity, `top_k=6`, chunk size 800, overlap 600).
+- **Testcases & Data:** testcases are generated with `evaluation/pipelines/generate_testcases.py`; manual goldens live at `data/evaluation/manual_goldens.json`.
+- **Vector store:** uses the persisted Chroma DB at `data/vectorstores/chroma_langchain_db/` (SQLite-backed).
+- **Execution steps:** 1) populate `.env` and run the Confident AI login helper (`python -c "from evaluation.datasets.deepeval_login import run_login; run_login()"`), 2) run `python evaluation/pipelines/runner.py` to execute the experiment.
+- **Outputs:** metrics/traces are pushed to DeepEval (Confident AI) 
 
 ## Evaluation highlights
 
